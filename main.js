@@ -74,6 +74,6 @@ function calcularMedia(){
 
 function atualizaMedia(){
   let media = calcularMedia()
-  document.getElementById('media').innerHTML = media
+  document.getElementById('media').innerHTML = media.toFixed(2)
   document.getElementById('resultado-media').innerHTML = media >= notaMinima ? spanAprovado : spanReprovado  
 }
