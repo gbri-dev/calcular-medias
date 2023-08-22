@@ -96,3 +96,19 @@ table td img {
 .reprovado {
   background-color: red;
 }
+
+footer{
+  padding-top: 100px;
+}
+
+footer span {
+  opacity: 80%;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+footer a {
+  text-decoration: none;
+  margin: 0 4px;
+}
