@@ -5,31 +5,34 @@ const arrayAtividades = []
 const arrayNotas = []
 const spanAprovado = '<span class="resultado aprovado">Aprovado</span>'
 const spanReprovado = '<span class="resultado reprovado">Reprovado</span>'
-let notaMinima = 0 
+var notaMinima = 7.00
+
 let linhas = ''
 
 document.addEventListener('DOMContentLoaded', function(){
   getNotaMinima()
 })
 
-form.addEventListener('submit', function(e){
-    e.preventDefault()    
-    adicionandoLinha()
-    atualizaTabela()    
-    atualizaMedia()
-})
-
 function getNotaMinima(){
   let minNota = parseFloat(prompt('Digite a nota mínima para aprovação: ')) 
-  if(minNota != 0 && minNota != null && minNota != undefined && minNota != NaN){    
-    console.log(notaMinima)
-    notaMinima = minNota
+  if(!isNaN(minNota) && minNota != null && minNota >= 1){        
+    notaMinima = minNota    
+  } else if(minNota == 0){
+    alert('Nota mínima inválida')
+    return getNotaMinima()
   }    
   else{
     alert('Nota mínima inválida')
     return getNotaMinima()
   }
 }
+
+form.addEventListener('submit', function(e){
+    e.preventDefault()          
+    adicionandoLinha()
+    atualizaTabela()    
+    atualizaMedia() 
+})
   
 function adicionandoLinha(){
   const nomeAtividade = document.getElementById('nome')
@@ -72,10 +75,5 @@ function calcularMedia(){
 function atualizaMedia(){
   let media = calcularMedia()
   document.getElementById('media').innerHTML = media
-  if(notaMinima != 0 && notaMinima != null && notaMinima != undefined && notaMinima != NaN)
-    document.getElementById('resultado-media').innerHTML = media >= notaMinima ? spanAprovado : spanReprovado
-  else{
-    alert('Nota mínima inválida')
-    notaMinima
-  }
+  document.getElementById('resultado-media').innerHTML = media >= notaMinima ? spanAprovado : spanReprovado  
 }
